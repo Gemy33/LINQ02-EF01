@@ -1,5 +1,6 @@
 ﻿using ADV05_LINQ01.ADV05;
 using ADV05_LINQ01.LINQ01;
+using System.Diagnostics;
 using System.Runtime.Intrinsics.Arm;
 using System.Threading;
 using System.Xml.Linq;
@@ -233,10 +234,69 @@ namespace ADV05_LINQ01
 
             //var res2 = customers.SelectMany(c => c.Orders.Where(o => o.OrderDate.Year >= 1998)); 
             #endregion
-            #endregion 
             #endregion
 
-            // LINQ - Aggregate Operators not take it 
+            #region LINQ - Aggregate Operators
+
+            #region 1. Uses Count to get the number of odd numbers in the array 
+            //int[] Arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            //var OddNumberscount= Arr.Count(n => n % 2 == 1);
+            //Console.WriteLine($"Count of Odd Numbers is : {OddNumberscount}"); 
+            #endregion
+
+            #region 2. Return a list of customers and how many orders each has.
+            //var r = customers.Select(c => new {customerid= c.CustomerID, CountOfOrders=c.Orders.Length });
+            //foreach (var item in r)
+            //{
+            //    Console.WriteLine($"Customer: {item.customerid} has ==> {item.CountOfOrders} orders");
+            //    Console.WriteLine("---------------------------");
+            //} 
+            #endregion
+
+            #region 3. Return a list of categories and how many products each has
+            //var r = products.Select(p => p.Category).ToHashSet();
+            //foreach (var item in r)
+            //{
+            //    var count = products.Count(p => p.Category == item);
+            //    Console.WriteLine($"Category: {item}. has ==> {count} products");
+            //    Console.WriteLine("---------------------------");
+            //}
+            #endregion
+
+            #region 4. Get the total of the numbers in an array.
+            //int [] Arr = {5, 4, 1, 3, 9, 8, 6, 7, 2, 0};
+            //var total = Arr.Sum();
+            //Console.WriteLine($"Total of numbers in array is : {total}");
+
+            #endregion
+
+           
+            string[] strings = File.ReadLines("dictionary_english.txt").ToArray();
+            #region  5. Get the total number of characters of all words in dictionary_english.txt
+            //var r = strings.Count();
+            //Console.WriteLine($"Total number of words in dictionary_english.txt is : {r}"); 
+            #endregion
+
+            #region 6. Get the length of the shortest word in dictionary_english.txt
+            var t = strings.Min()?.Length;
+            Console.WriteLine(t);
+            #endregion
+
+            #region 7. Get the length of the longest Word in dictionary_english.txt
+            //var LengthOfLongestWord = strings.Max()?.Length;
+            //Console.WriteLine(LengthOfLongestWord); 
+            #endregion
+
+            #region 8.Get the length of the avarage length word in dictionary_english.txt
+            //var AverageLengthOfWords = strings.Average(s => s.Length);
+            //Console.WriteLine(AverageLengthOfWords); 
+            #endregion
+
+            #endregion
+
+            #endregion
+
+
 
 
 
