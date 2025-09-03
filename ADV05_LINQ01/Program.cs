@@ -1,5 +1,4 @@
-﻿using ADV05_LINQ01.ADV05;
-using ADV05_LINQ01.LINQ01;
+﻿using ADV05_LINQ01.LINQ01;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
