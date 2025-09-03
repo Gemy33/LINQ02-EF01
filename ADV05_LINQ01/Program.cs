@@ -475,6 +475,13 @@ namespace ADV05_LINQ01
 
             #region EF01
 
+            using(var context = new ITI01Context())
+            {
+
+
+
+            }
+
             #endregion
 
 
