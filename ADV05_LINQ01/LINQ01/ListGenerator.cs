@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using System.Xml.Linq;
 namespace ADV05_LINQ01.LINQ01
 {
 
-    class Product : IComparable<Product>
+    class Product : IComparable<Product>, IEquatable<Product>
     {
         public long ProductID { get; set; }
         public string ProductName { get; set; }
@@ -20,10 +21,25 @@ namespace ADV05_LINQ01.LINQ01
             => this.UnitPrice.CompareTo(other?.UnitPrice);
 
 
+
+        public bool Equals(Product? other)
+        {
+            return other is not null &&
+                   ProductID == other.ProductID;
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(ProductID);
+        }
+
+
         public override string ToString()
             => $"ProductID:{ProductID},ProductName:{ProductName},Category{Category},UnitPrice:{UnitPrice},UnitsInStock:{UnitsInStock}";
 
     }
+
+
+
     class Customer
     {
         public string CustomerID { get; set; }
@@ -82,6 +98,7 @@ namespace ADV05_LINQ01.LINQ01
 
                         new Product() {ProductID = 1, ProductName = "Chai", Category = "Beverages",
                             UnitPrice = 18.00M, UnitsInStock = 100},
+                        
                         new Product{ ProductID = 2, ProductName = "Chang", Category = "Beverages",
                         UnitPrice = 19.0000M, UnitsInStock = 17 },
                       new Product{ ProductID = 3, ProductName = "Aniseed Syrup", Category = "Condiments",
@@ -168,7 +185,7 @@ namespace ADV05_LINQ01.LINQ01
                         UnitPrice = 46.0000M, UnitsInStock = 17 },
                       new Product() { ProductID = 44, ProductName = "Gula Malacca", Category = "Condiments",
                         UnitPrice = 19.4500M, UnitsInStock = 27 },
-                      new Product() { ProductID = 45, ProductName = "Rogede sild", Category = "Seafood",
+                      new Product() { ProductID = 45, ProductName = "Rogede sild", Category = "seafood",
                         UnitPrice = 9.5000M, UnitsInStock = 5 },
                       new Product() { ProductID = 46, ProductName = "Spegesild", Category = "Seafood",
                         UnitPrice = 12.0000M, UnitsInStock = 95 },
@@ -224,7 +241,7 @@ namespace ADV05_LINQ01.LINQ01
                         UnitPrice = 21.5000M, UnitsInStock = 26 },
                       new Product() { ProductID = 72, ProductName = "Mozzarella di Giovanni", Category = "Dairy Products",
                         UnitPrice = 34.8000M, UnitsInStock = 14 },
-                      new Product() { ProductID = 73, ProductName = "Röd Kaviar", Category = "Seafood",
+                      new Product() { ProductID = 73, ProductName = "Röd Kaviar", Category = "seafood",
                         UnitPrice = 15.0000M, UnitsInStock = 101 },
                       new Product() { ProductID = 74, ProductName = "Longlife Tofu", Category = "Produce",
                         UnitPrice = 10.0000M, UnitsInStock = 4 },
